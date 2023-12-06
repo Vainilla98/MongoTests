@@ -1,0 +1,57 @@
+// Ejercicio 1 [1]
+use('empledepart2')
+db.depart.find (
+    {}, 
+    {_id:0 ,depart_no:1, dnombre:1}
+);
+// Ejercicio 2 [1]
+use('empledepart2')
+db.emple.find (
+    {}, 
+    {_id:0 ,depart_no:1, apellido:1}
+).sort({apellido:1});
+// Ejercicio 3 [1]
+use('empledepart2')
+db.emple.find (
+    {apellido: {$regex: /^A\w*/}}, 
+    {_id:0 ,depart_no:1, apellido:1}
+);
+// Ejercicio 4 [1]
+use('empledepart2')
+db.emple.find (
+    {salario:{$gte:1500, $lte:1800}}, 
+    {_id:0 ,depart_no:1, apellido:1}
+);
+
+// Ejercicio 5 ?? 
+use('empledepart2')
+db.emple.find (
+    {},
+    {_id:0 , apellido:1, oficio:1, loc:1}
+);
+// Ejercicio 6 [1]
+use('empledepart2')
+db.emple.find ().sort({oficio:-1});
+
+// Ejercicio 7
+use('empledepart2')
+db.emple.find (
+    {},
+    {_id:0 , salario:1}
+).sort({salario:-1}).limit(1);
+// Ejercicio 8
+use('empledepart2')
+db.emple.find().count();
+
+// Ejercicio 9
+use('empledepart2')
+db.emple.find (
+    {comision:{$exists:true}}
+).count();
+
+// EXTRA
+use('empledepart2')
+db.empledepart.find (
+    {departNo: {loc:'MADRID'}},
+    {_id:0 , apellido:1, departNo: {loc:1}}
+);

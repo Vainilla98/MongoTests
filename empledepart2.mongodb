@@ -1,0 +1,246 @@
+use('empledepart2')
+db.emple.updateOne (
+    {oficio: "VENDEDOR"},
+    {$set: {comision:null} }
+)
+
+use('empledepart2')
+db.emple.updateMany (
+    {oficio: "VENDEDOR"},
+    {$set: {comision:null} }
+)
+
+use('empledepart2')
+db.emple.updateMany (
+    {$nor:{oficio: "VENDEDOR"}},
+    {$set: {comision:null} }
+)
+
+
+use('empledepart2')
+db.emple.countDocuments()
+
+use('empledepart2')
+db.emple.distinct('oficio')
+
+
+use('empledepart2')
+db.emple.distinct('oficio').length
+
+use('empledepart2')
+db.emple.find({},{_id:0})
+
+// Apellidos deparatamenteo 30 ordenados de los que ganan mas a menos
+use('empledepart2')
+db.emple.find({depart_no:30}, {_id:0 ,apellido:1, salario:1})
+.sort({salario:-1})
+
+use('empledepart2')
+db.emple.find({depart_no:30}, {_id:0 ,apellido:1, salario:1})
+.sort({salario:-1})
+
+use('empledepart2')
+db.emple.find({apellido:{$regex:/^A/i}});
+
+use('empledepart2')
+db.emple.find({apellido:{$regex:/^\wR\w*/i}});
+
+use('empledepart2')
+db.emple.find({salario: {$gte:1000, $lte:2000}}, {_id:0 ,apellido:1, salario:1});
+
+// Sacar empleados del departamento 10, salario > 1500 y apellido
+// tenga 4 letras
+
+use('empledepart2')
+db.emple.find(
+    {apellido:{$regex:/^\w{3}$/},salario: {$gte:2500},depart_no: 10}, 
+    {_id:0 ,apellido:1, salario:1,depart_no:1}
+);
+
+// empleados del departamento 10 y 20
+
+use('empledepart2')
+db.emple.find (
+    {$or:[{depart_no:10}, {depart_no:20}]}, 
+    {_id:0 ,apellido:1, salario:1,depart_no:1}
+);
+use('empledepart2')
+db.emple.find (
+    {depart_no:{ $in: [10, 20] }}, 
+    {_id:0 ,apellido:1, salario:1,depart_no:1}
+);
+
+use('empledepart2')
+db.emple.find (
+    { comision:{ $exists: true } }
+);
+
+
+use('empledepart2')
+db.results.insertMany( [
+        {results: [82, 85, 88]},
+        {results: [75, 88, 89]}
+])
+
+use('empledepart2')
+db.results.find({results:85});
+
+use('empledepart2')
+db.results.find({ results:{$all:[75,89]} });
+
+use('empledepart2')
+db.encuesta.insertMany( [
+    {
+        resultados: [
+            {
+                empleado: 1,
+                valor: 8
+            },
+            {
+                empleado: 2,
+                valor: 5
+            },
+            {
+                empleado: 3,
+                valor: 7
+            }
+        ]
+    },
+    {
+        resultados: [
+            {
+                empleado: 8,
+                valor: 2
+            },
+            {
+                empleado: 9,
+                valor: 4
+            }
+        ]
+    }
+])
+
+use("empledepart2")
+db.encuesta.find(
+    { "resultados.valor":5 }
+);
+
+
+use("empledepart2")
+db.encuesta.find(
+    { 
+        resultados: {
+            $elemMatch : { valor:5 }
+        }
+    }
+);
+
+use("empledepart2")
+db.encuesta.find(
+    { 
+        "resultados.valor": { $ne : 5 }
+    }
+);
+
+
+
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+              _id: "$depart_no",
+              SumaSalarios: {  $sum: "$salario" }
+            }
+        }
+    ]
+);
+
+
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+              _id: "$depart_no",
+              Total: { $sum: 1 }
+            }
+        }
+    ]
+);
+
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+              _id: { depart:"$depart_no", oficio:"$oficio" },
+              Total: { $sum: 1 }
+            }
+        }
+    ]
+);
+
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+              _id: "$depart_no",
+              Media: { $avg: "$salario" } 
+            }
+        }
+    ]
+);
+
+
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+              _id: "$depart_no",
+              Media: { $avg: "$salario" } 
+            }
+        }
+    ]
+);
+
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        { 
+            $match: { $or:[{oficio:"VENDEDOR"}, {oficio:"ANALISTA"}] }
+        },
+        {
+            $group: {
+              _id: "$depart_no",
+              Media: { $avg: "$salario" } 
+            }
+        }
+    ]
+);
+
+// PAG 43
+
+use("empledepart2")
+db.emple.updateMany(
+    { 
+        depart_no:10 
+    }, 
+    { $mul:{
+         salario: 1.10 
+        }
+    }
+)
+
+db.emple.updateMany(
+    {
+        comision:null
+    },
+    {
+        $unset: { comisión: "" }
+    }
+)
+
+

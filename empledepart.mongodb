@@ -1,0 +1,399 @@
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+db.getMongo().getDBs()
+
+
+// Create a new database.
+/**/use('empledepart');
+
+let empleado = {
+    "empleNo":7839,
+    "apellido":"MONCAYO",
+    "oficio":"PRESIDENTE",
+    "fechaAlta":new Date("17/11/1991"),
+    "salario":4100,
+    "departNo": {
+        "departNo":10,
+        "nombre":"CONTABILIDAD",
+        "loc":"SEVILLA"
+    }
+}
+db.emple.insertOne(empleado)
+
+use('empledepart');
+db.createCollection("depart")
+
+let departamentotos = [
+  {
+    "depart_no":10,
+    "dnombre":'CONTABILIDAD',
+    "loc":'SEVILLA'
+  },
+  {
+    "depart_no":20,
+    "dnombre":'INVESTIGACION',
+    "loc":'MADRID'
+  },
+  {
+    "depart_no":30,
+    "dnombre":'VENTAS',
+    "loc":'BARCELONA'
+  },
+  {
+    "depart_no":40,
+    "dnombre":'PRODUCCION',
+    "loc":'BILBAO'
+  }
+];
+
+db.depart.insertMany(departamentotos)
+
+use('empledepart');
+db.createCollection("emple")
+
+let empleados10 = [
+  {
+    "empleNo":7839,
+    "apellido":"REY",
+    "oficio":"PRESIDENTE",
+    "fechaAlta":new Date("17/11/1991"),
+    "salario":4100,
+    "departNo": 10
+  },
+  {
+    "empleNo":7782,
+    "apellido":"CEREZO",
+    "oficio":"DIRECTOR",
+    "dir":7839,
+    "fechaAlta":new Date("09/06/1991"),
+    "salario":2885,
+    "departNo": 10
+  },
+  {
+    "empleNo":7934,
+    "apellido":"MUÑOZ",
+    "oficio":"EMPLEADO",
+    "dir":7782,
+    "fechaAlta":new Date("23/01/1992"),
+    "salario":1690,
+    "departNo": 10
+  }
+]
+let empleados20 = [
+  {
+    "empleNo":7566,
+    "apellido":"JIMENEZ",
+    "oficio":"DIRECTOR",
+    "dir":7839,
+    "fechaAlta":new Date("04/02/1991"),
+    "salario":2900,
+    "departNo": 20
+  },
+  {
+    "empleNo":7788,
+    "apellido":"GIL",
+    "oficio":"ANALISTA",
+    "dir":7566,
+    "fechaAlta":new Date("09/11/1991"),
+    "salario":3000,
+    "departNo": 20
+  },
+  {
+    "empleNo":7876,
+    "apellido":"ALONSO",
+    "oficio":"EMPLEADO",
+    "dir":7788,
+    "fechaAlta":new Date("23/09/1991"),
+    "salario":1430,
+    "departNo": 20
+  },
+  {
+    "empleNo":7902,
+    "apellido":"FERNANDEZ",
+    "oficio":"ANALISTA",
+    "dir":7566,
+    "fechaAlta":new Date("03/12/1991"),
+    "salario":3000,
+    "departNo": 20
+  },
+  {
+    "empleNo":7369,
+    "apellido":"SANCHEZ",
+    "oficio":"EMPLEADO",
+    "dir":7902,
+    "fechaAlta":new Date("17/12/1990"),
+    "salario":1040,
+    "departNo": 20
+  }
+]
+let empleados30 = [
+  {
+    "empleNo":7698,
+    "apellido":"NEGRO",
+    "oficio":"DIRECTOR",
+    "dir":7839,
+    "fechaAlta":new Date("01/05/1991"),
+    "salario":3005,
+    "departNo": 30
+  },
+  {
+    "empleNo":7654,
+    "apellido":"MARTIN",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("29/09/1991"),
+    "salario":1600,
+    "comision":1020,
+    "departNo": 30
+  },
+  {
+    "empleNo":7499,
+    "apellido":"ARROYO",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("20/02/1990"),
+    "salario":1500,
+    "comision":390,
+    "departNo": 30
+  },
+  {
+    "empleNo":7844,
+    "apellido":"TOVAR",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("08/09/1991"),
+    "salario":1350,
+    "comision":0,
+    "departNo": 30
+  },
+  {
+    "empleNo":7900,
+    "apellido":"JIMENO",
+    "oficio":"EMPLEADO",
+    "dir":7698,
+    "fechaAlta":new Date("03/12/1991"),
+    "salario":1335,
+    "departNo": 30
+  },
+  {
+    "empleNo":7521,
+    "apellido":"SALA",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("22/02/1991"),
+    "salario":1625,
+    "comision":650,
+    "departNo": 30
+  }
+]
+
+db.emple.insertMany(empleados10)
+db.emple.insertMany(empleados20)
+db.emple.insertMany(empleados30)
+
+
+use('empledepart');
+db.createCollection("empledepart")
+
+let empleados10_1 = [
+  {
+    "empleNo":7839,
+    "apellido":"REY",
+    "oficio":"PRESIDENTE",
+    "fechaAlta":new Date("17/11/1991"),
+    "salario":4100,
+    "departNo" : {
+      "depart_no":10,
+      "dnombre":'CONTABILIDAD',
+      "loc":'SEVILLA'
+    }
+  },
+  {
+    "empleNo":7782,
+    "apellido":"CEREZO",
+    "oficio":"DIRECTOR",
+    "dir":7839,
+    "fechaAlta":new Date("09/06/1991"),
+    "salario":2885,
+    "departNo" : {
+      "depart_no":10,
+      "dnombre":'CONTABILIDAD',
+      "loc":'SEVILLA'
+    }
+  },
+  {
+    "empleNo":7934,
+    "apellido":"MUÑOZ",
+    "oficio":"EMPLEADO",
+    "dir":7782,
+    "fechaAlta":new Date("23/01/1992"),
+    "salario":1690,
+    "departNo" : {
+      "depart_no":10,
+      "dnombre":'CONTABILIDAD',
+      "loc":'SEVILLA'
+    }
+  }
+]
+let empleados20_1 = [
+  {
+    "empleNo":7566,
+    "apellido":"JIMENEZ",
+    "oficio":"DIRECTOR",
+    "dir":7839,
+    "fechaAlta":new Date("04/02/1991"),
+    "salario":2900,
+    "departNo": {
+      "depart_no":20,
+      "dnombre":'INVESTIGACION',
+      "loc":'MADRID'
+    }
+  },
+  {
+    "empleNo":7788,
+    "apellido":"GIL",
+    "oficio":"ANALISTA",
+    "dir":7566,
+    "fechaAlta":new Date("09/11/1991"),
+    "salario":3000,
+    "departNo": {
+      "depart_no":20,
+      "dnombre":'INVESTIGACION',
+      "loc":'MADRID'
+    }
+  },
+  {
+    "empleNo":7876,
+    "apellido":"ALONSO",
+    "oficio":"EMPLEADO",
+    "dir":7788,
+    "fechaAlta":new Date("23/09/1991"),
+    "salario":1430,
+    "departNo": {
+      "depart_no":20,
+      "dnombre":'INVESTIGACION',
+      "loc":'MADRID'
+    }
+  },
+  {
+    "empleNo":7902,
+    "apellido":"FERNANDEZ",
+    "oficio":"ANALISTA",
+    "dir":7566,
+    "fechaAlta":new Date("03/12/1991"),
+    "salario":3000,
+    "departNo": {
+      "depart_no":20,
+      "dnombre":'INVESTIGACION',
+      "loc":'MADRID'
+    }
+  },
+  {
+    "empleNo":7369,
+    "apellido":"SANCHEZ",
+    "oficio":"EMPLEADO",
+    "dir":7902,
+    "fechaAlta":new Date("17/12/1990"),
+    "salario":1040,
+    "departNo": {
+      "depart_no":20,
+      "dnombre":'INVESTIGACION',
+      "loc":'MADRID'
+    }
+  }
+]
+let empleados30_1 = [
+  {
+    "empleNo":7698,
+    "apellido":"NEGRO",
+    "oficio":"DIRECTOR",
+    "dir":7839,
+    "fechaAlta":new Date("01/05/1991"),
+    "salario":3005,
+    "departNo": {
+      "depart_no":30,
+      "dnombre":'VENTAS',
+      "loc":'BARCELONA'
+    }
+  },
+  {
+    "empleNo":7654,
+    "apellido":"MARTIN",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("29/09/1991"),
+    "salario":1600,
+    "comision":1020,
+    "departNo": {
+      "depart_no":30,
+      "dnombre":'VENTAS',
+      "loc":'BARCELONA'
+    }
+  },
+  {
+    "empleNo":7499,
+    "apellido":"ARROYO",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("20/02/1990"),
+    "salario":1500,
+    "comision":390,
+    "departNo": {
+      "depart_no":30,
+      "dnombre":'VENTAS',
+      "loc":'BARCELONA'
+    }
+  },
+  {
+    "empleNo":7844,
+    "apellido":"TOVAR",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("08/09/1991"),
+    "salario":1350,
+    "comision":0,
+    "departNo": {
+      "depart_no":30,
+      "dnombre":'VENTAS',
+      "loc":'BARCELONA'
+    }
+  },
+  {
+    "empleNo":7900,
+    "apellido":"JIMENO",
+    "oficio":"EMPLEADO",
+    "dir":7698,
+    "fechaAlta":new Date("03/12/1991"),
+    "salario":1335,
+    "departNo": {
+      "depart_no":30,
+      "dnombre":'VENTAS',
+      "loc":'BARCELONA'
+    }
+  },
+  {
+    "empleNo":7521,
+    "apellido":"SALA",
+    "oficio":"VENDEDOR",
+    "dir":7698,
+    "fechaAlta":new Date("22/02/1991"),
+    "salario":1625,
+    "comision":650,
+    "departNo": {
+      "depart_no":30,
+      "dnombre":'VENTAS',
+      "loc":'BARCELONA'
+    }
+  }
+]
+
+db.empledepart.insertMany(empleados10_1)
+db.empledepart.insertMany(empleados20_1)
+db.empledepart.insertMany(empleados30_1)
+ 
+use('empledepart');
+db.emple.find({departNo:10}).pretty()
+
+
+
+use('empledepart')
+db.emple.find({departNo:10})

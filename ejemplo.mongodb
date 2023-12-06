@@ -1,0 +1,64 @@
+use('empledepart');
+db.createCollection("pruebas")
+
+db.pruebas.insertOne(
+    {
+        "empleNo":1,
+        "apellido":"GOMEZ",
+        "oficio":"PRESIDENTE",
+        "fechaAlta":new Date("07/06/2004"),
+        "salario":4100,
+        "departNo": {
+            "departNo":10,
+            "nombre":"CONTABILIDAD",
+            "loc":"SEVILLA"
+        }
+    }
+)
+
+
+db.pruebas.insertMany(
+    [
+        {
+            "empleNo":2,
+            "apellido":"BRUNEH",
+            "oficio":"EMPLEADO",
+            "fechaAlta":new Date("07/06/2002"),
+            "salario":1000,
+            "departNo": {
+                "departNo":10,
+                "nombre":"CONTABILIDAD",
+                "loc":"SEVILLA"
+            }
+        },
+        {
+            "empleNo":3,
+            "apellido":"MORAL",
+            "oficio":"EMPLEADO",
+            "fechaAlta":new Date(),
+            "salario":1500,
+            "departNo": {
+                "departNo":10,
+                "nombre":"CONTABILIDAD",
+                "loc":"SEVILLA"
+            }
+        }
+    ]
+);
+use('empledepart')
+db.pruebas.find().pretty()
+
+
+use('empledepart')
+
+let empleado = {
+    "empleNo":4,
+    "apellido":"MISTONIZZI",
+    "oficio":"EMPLEADO",
+    "fechaAlta":new Date(),
+    "salario":1200,
+    "departNo": 10
+}
+db.pruebas.insertOne(empleado)
+
+

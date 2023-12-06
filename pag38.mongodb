@@ -1,0 +1,98 @@
+// Ejercicio 1 [1]
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        { 
+            $match: { depart_no:10 }
+        },
+        {
+            $group: {
+              _id: "$depart_no",
+              Media: { $avg: "$salario" } 
+            }
+        }
+    ]
+);
+
+// Ejercicio 2 [1]
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $match: { $or:[ {depart_no:10 },{ depart_no:20 }]}
+        },
+        {
+            $group: { _id: "$oficio" }
+        },
+        {
+            $count: "oficio"
+        }
+    ]
+);
+
+// EJEMPLO
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $match: { $or:[ {depart_no:10 },{ depart_no:20 }]}
+        },
+        {
+            $group: { _id: "$depart_no", oficiosDistintos:{$addToSet:"$oficio"} }
+        }
+    ]
+);
+
+
+// Ejercicio 3 [1]
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+                _id: "$oficio",
+                Suma: { $sum: "$salario" } 
+            }
+        }
+    ]
+);
+
+// Ejercicio 4 [1]
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+                _id: "$oficio",
+                Maximo: { $max: "$salario" } 
+            }
+        }
+    ]
+);
+// Ejercicio 5 [1]
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        {
+            $group: {
+                _id: { depart_no: "$depart_no",oficio: "$oficio"},
+                Media: { $avg: "$salario" } 
+            }
+        }
+    ]
+);
+// Ejercicio 6 [1]
+use("empledepart2")
+db.emple.aggregate(
+    [ 
+        { 
+            $match: { oficio:"ANALISTA" }
+        },
+        {
+            $group: {
+                _id: "$oficio",
+                Suma: { $sum: "$salario" } 
+            }
+        }
+    ]
+);
